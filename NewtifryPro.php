@@ -1,0 +1,136 @@
+<?
+/**
+ * NewtifryPro - PHP message push script.
+ * fir version up to 1.1.0
+ */
+
+const GCM_URL = 'https://android.googleapis.com/gcm/send';
+const apikey = "YourGoogleAPIKEY";
+
+$deviceIds = array();
+// Add your GCM IDs below
+$deviceIds[] = "MyFirstGCMDeviceID";
+//$deviceIds[] = "MySecondGCMDeviceIDIfAny";
+
+// samples
+// standard message
+$result = newtifryProPush($deviceIds, 
+							"Test message", 
+							"Normal", 
+							"Hello from NewtifryPro", 
+							1, 
+							"https://newtifry.appspot.com", 
+							"http://www.newtifry.org/test_newtifry.jpg", 
+							-1,	// speak 
+							false, 	// noCache
+							0, 	// state : default
+							-1); 	// notify
+print_r($result);
+// sticky message
+$result = newtifryProPush($deviceIds, 
+							"Test message", 
+							"Sticky", 
+							"Hello from NewtifryPro", 
+							1, 
+							"https://newtifry.appspot.com", 
+							"http://www.newtifry.org/test_newtifry.jpg", 
+							-1,	// speak 
+							false, 	// noCache
+							1, 	// state : sticky
+							-1); 	// notify
+print_r($result);
+// locked message
+$result = newtifryProPush($deviceIds, 
+							"Test message", 
+							"Locked", 
+							"Hello from NewtifryPro", 
+							1, 
+							"https://newtifry.appspot.com", 
+							"http://www.newtifry.org/test_newtifry.jpg", 
+							-1,	// speak 
+							false, 	// noCache
+							2, 	// state : locked
+							-1); 	// notify
+print_r($result);
+
+
+function iso8601() {
+	date_default_timezone_set("UTC");
+    $time=time();
+    return date("Y-m-d", $time) . 'T' . date("H:i:s", $time) .'.00:00';
+}
+
+
+function newtifryProPush(	$deviceIds,  
+							$title, 
+							$source = NULL, 
+							$message = NULL, 
+							$priority = 0, 
+							$url = NULL, 
+							$imageUrl = NULL, 
+							$speak = -1, 
+							$noCache = false, 
+							$state = 0, 
+							$notify = -1){
+      //Prepare variables
+	$GCM_URL = "https://android.googleapis.com/gcm/send";
+    $data = array ( "type" => "ntp_message",
+					"timestamp" => iso8601(),
+					"priority" => $priority, 
+					"title" => base64_encode($title));
+
+	if ($message) {
+		$data["message"] = base64_encode($message);
+	}
+	if ($source) {
+		$data["source"] = base64_encode($source);
+	}
+	if ($url) {
+		$data["url"] = base64_encode($url);
+	}
+	if ($imageUrl) {
+		$data["image"] = base64_encode($imageUrl);
+	}
+	if ($speak == 0 || $speak == 1) {
+		$data["speak"] = $speak;
+	}
+	if ($noCache == true) {
+		$data["nocache"] = 1;
+	}
+	if ($state == 1 || $state == 2) {
+		$data["state"] = $state;
+	}
+	if ($notify == 0 || $notify == 1) {
+		$data["notify"] = $notify;
+	}
+
+    $fields = array(
+                      'registration_ids'  => $deviceIds,
+                      'data'              => $data,
+                      );
+
+    $headers = array( 
+                          'Authorization: key=' . apikey,
+                          'Content-Type: application/json'
+                      );
+
+      // Open connection
+      $ch = curl_init();
+
+      // Set the url, number of POST vars, POST data
+      curl_setopt( $ch, CURLOPT_URL, $GCM_URL );
+      curl_setopt( $ch, CURLOPT_POST, true );
+      curl_setopt( $ch, CURLOPT_HTTPHEADER, $headers);
+      curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+      curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode( $fields ) );
+
+      // Execute post
+      $result = curl_exec($ch);
+
+      // Close connection
+      curl_close($ch);
+
+      //Return push response as array
+      return json_decode($result);
+}
+?>
