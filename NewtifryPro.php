@@ -1,58 +1,8 @@
 <?
 /**
  * NewtifryPro - PHP message push script.
- * fir version up to 1.1.0
+ * for version up to 1.1.0
  */
-
-const GCM_URL = 'https://android.googleapis.com/gcm/send';
-const apikey = "YourGoogleAPIKEY";
-
-$deviceIds = array();
-// Add your GCM IDs below
-$deviceIds[] = "MyFirstGCMDeviceID";
-//$deviceIds[] = "MySecondGCMDeviceIDIfAny";
-
-// samples
-// standard message
-$result = newtifryProPush($deviceIds, 
-							"Test message", 
-							"Normal", 
-							"Hello from NewtifryPro", 
-							1, 
-							"https://newtifry.appspot.com", 
-							"http://www.newtifry.org/test_newtifry.jpg", 
-							-1,	// speak 
-							false, 	// noCache
-							0, 	// state : default
-							-1); 	// notify
-print_r($result);
-// sticky message
-$result = newtifryProPush($deviceIds, 
-							"Test message", 
-							"Sticky", 
-							"Hello from NewtifryPro", 
-							1, 
-							"https://newtifry.appspot.com", 
-							"http://www.newtifry.org/test_newtifry.jpg", 
-							-1,	// speak 
-							false, 	// noCache
-							1, 	// state : sticky
-							-1); 	// notify
-print_r($result);
-// locked message
-$result = newtifryProPush($deviceIds, 
-							"Test message", 
-							"Locked", 
-							"Hello from NewtifryPro", 
-							1, 
-							"https://newtifry.appspot.com", 
-							"http://www.newtifry.org/test_newtifry.jpg", 
-							-1,	// speak 
-							false, 	// noCache
-							2, 	// state : locked
-							-1); 	// notify
-print_r($result);
-
 
 function iso8601() {
 	date_default_timezone_set("UTC");
@@ -60,8 +10,8 @@ function iso8601() {
     return date("Y-m-d", $time) . 'T' . date("H:i:s", $time) .'.00:00';
 }
 
-
-function newtifryProPush(	$deviceIds,  
+function newtifryProPush(	$apikey,
+							$deviceIds,  
 							$title, 
 							$source = NULL, 
 							$message = NULL, 
@@ -110,7 +60,7 @@ function newtifryProPush(	$deviceIds,
                       );
 
     $headers = array( 
-                          'Authorization: key=' . apikey,
+                          'Authorization: key=' . $apikey,
                           'Content-Type: application/json'
                       );
 
