@@ -38,9 +38,18 @@ function newtifryProPush(	$apikey,
 	if ($url) {
 		$data["url"] = base64_encode($url);
 	}
-	if ($imageUrl) {
-		$data["image"] = base64_encode($imageUrl);
-	}
+    if ($imageUrl) {
+    	if (is_array($imageUrl)) {
+            for ($i = 1; $i < 6; $i++) {
+                if ($imageUrl[$i - 1] != null) {
+        		    $data["image" . $i] = base64_encode($imageUrl[$i - 1]);
+                }
+            }
+    	} else {
+        	$data["image"] = base64_encode($imageUrl);
+    	}
+    }
+        
 	if ($speak == 0 || $speak == 1) {
 		$data["speak"] = $speak;
 	}
