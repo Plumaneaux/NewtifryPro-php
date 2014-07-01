@@ -1,7 +1,7 @@
 <?
 /**
  * NewtifryPro - PHP message push script.
- * for version up to 1.1.0
+ * for version up to 1.2.0
  */
 
 function iso8601() {
