@@ -1,8 +1,12 @@
 <?
 include ("NewtifryPro.php");
-if (file_exists("credentials.php")) {
-    include ("credentials.php");
-}
+
+$apikey = "YourGoogleAPIKEY";
+
+$deviceIds = array();
+// Add your GCM IDs below
+$deviceIds[] = "MyFirstGCMDeviceID";
+//$deviceIds[] = "MySecondGCMDeviceIDIfAny";
 
 // samples
 // standard message
