@@ -10,46 +10,46 @@ $deviceIds[] = "MyFirstGCMDeviceID";
 
 // samples
 // standard message
-$result = newtifryProPush(	$apikey,
-              							$deviceIds, 
-              							"Test message 1", 
-              							"Normal", 
-              							"Hello from NewtifryPro", 
-              							1, 
-              							"https://newtifry.appspot.com", 
-              							"http://upload.wikimedia.org/wikipedia/commons/b/b5/PA120016.JPG", 
-              							-1,	// speak 
-              							false, 	// noCache
-              							0, 	// state : default
-              							-1); 	// notify
+$result = newtifryProPush(  $apikey,
+                            $deviceIds, 
+                            "Test message 1", 
+                            "Normal", 
+                            "Hello from NewtifryPro", 
+                            1, 
+                            "https://newtifry.appspot.com", 
+                            "http://upload.wikimedia.org/wikipedia/commons/b/b5/PA120016.JPG", 
+                            -1,	// speak 
+                            false, 	// noCache
+                            0, 	// state : default
+                            -1); 	// notify
 print_r($result);
 // sticky message
-$result = newtifryProPush(	$apikey,
-              							$deviceIds, 
-              							"Test message 2", 
-              							"Sticky", 
-              							"Hello from NewtifryPro", 
-              							1, 
-              							"https://newtifry.appspot.com", 
-              							"http://upload.wikimedia.org/wikipedia/commons/b/b5/PA120016.JPG", 
-              							-1,	// speak 
-              							false, 	// noCache
-              							1, 	// state : sticky
-              							-1); 	// notify
+$result = newtifryProPush(  $apikey,
+                            $deviceIds, 
+                            "Test message 2", 
+                            "Sticky", 
+                            "Hello from NewtifryPro", 
+                            1, 
+                            "https://newtifry.appspot.com", 
+                            "http://upload.wikimedia.org/wikipedia/commons/b/b5/PA120016.JPG", 
+                            -1,	// speak 
+                            false, 	// noCache
+                            1, 	// state : sticky
+                            -1); 	// notify
 print_r($result);
 // locked message
-$result = newtifryProPush(	$apikey,
-              							$deviceIds, 
-              							"Test message 3", 
-              							"Locked", 
-              							"Hello from NewtifryPro", 
-              							1, 
-              							"https://newtifry.appspot.com", 
-              							"http://upload.wikimedia.org/wikipedia/commons/b/b5/PA120016.JPG", 
-              							-1,	// speak 
-              							false, 	// noCache
-              							2, 	// state : locked
-              							-1); 	// notify
+$result = newtifryProPush(  $apikey,
+                            $deviceIds, 
+                            "Test message 3", 
+                            "Locked", 
+                            "Hello from NewtifryPro", 
+                            1, 
+                            "https://newtifry.appspot.com", 
+                            "http://upload.wikimedia.org/wikipedia/commons/b/b5/PA120016.JPG", 
+                            -1,	// speak 
+                            false, 	// noCache
+                            2, 	// state : locked
+                            -1); 	// notify
 print_r($result);
 
 // with 5 images
@@ -61,16 +61,15 @@ $images = array(
   "http://upload.wikimedia.org/wikipedia/commons/2/20/Interior_of_log_house.jpg");
 
 $result = newtifryProPush(  $apikey,
-							              $deviceIds, 
-							              "Test message 4", 
-							              "locked 5 images", 
-							              "Hello from NewtifryPro", 
-							              1, 
-							              "https://newtifry.appspot.com", 
-							              $images, 
-							              -1,	// speak 
-							              false, 	// noCache
-							              2, 	// state : locked
-							              -1); 	// notify
-    
+                            $deviceIds, 
+                            "Test message 4", 
+                            "locked 5 images", 
+                            "Hello from NewtifryPro", 
+                            1, 
+                            "https://newtifry.appspot.com", 
+                            $images, 
+                            -1,	// speak 
+                            false, 	// noCache
+                            2, 	// state : locked
+                            -1); 	// notify
 ?>
