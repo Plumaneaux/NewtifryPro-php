@@ -1,6 +1,9 @@
 NewtifryPro-php
 ===============
 
+10/12/2015:
+- Add example for webserver integration (withWebserver.php)
+
 Server side Newtifry Pro script
 
 See Wiki pages for API documentation. (Work in progress).

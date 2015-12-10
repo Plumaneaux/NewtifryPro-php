@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * NewtifryPro - PHP message push script.
  * for version up to 1.2.0
