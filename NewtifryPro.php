@@ -27,7 +27,7 @@ function newtifryProPush(	$apikey,
 	$fields = array(  'registration_ids'  => $deviceIds,
 										'data'              => $data);
 	if ($priority == 3) {
-		$fields['priority'] = "high";
+		//$fields['priority'] = "high";
 	}
 	$toSend = json_encode( $data );
 	$totalLength = strlen($toSend);
@@ -54,6 +54,7 @@ function newtifryProPush(	$apikey,
 	} else {
 		$ret = newtifryProSend($apikey, $fields);
 	}
+	//echo $ret;
 	//Return push response as array
 	return $ret;
 }
@@ -76,7 +77,7 @@ function newtifryProPushToTopic(	$apikey,
 	$fields = array(  'to'  => "/topics/" . $topic,
 										'data'              => $data);
 	if ($priority == 3) {
-		$fields['priority'] = "high";
+		//$fields['priority'] = "high";
 	}
 
 	$toSend = json_encode( $data );
