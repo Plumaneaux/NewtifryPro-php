@@ -1,4 +1,4 @@
-<?
+<?php
 include ("NewtifryPro.php");
 
 $apikey = "YourGoogleAPIKEY";
@@ -72,4 +72,19 @@ $result = newtifryProPush(  $apikey,
                             false, 	// noCache
                             2, 	// state : locked
                             -1); 	// notify
+// message with tag
+$result = newtifryProPush(  $apikey,
+                            $deviceIds, 
+                            "Test message with tag", 
+                            "With tag" . uniqid(), 
+                            "Hello from NewtifryPro", 
+                            1, 
+                            "https://newtifry.appspot.com", 
+                            "http://upload.wikimedia.org/wikipedia/commons/b/b5/PA120016.JPG", 
+                            -1,	// speak 
+                            false, 	// noCache
+                            0, 	// state : default
+                            -1, // notify
+                            "message_tag"); 	
+                            
 ?>

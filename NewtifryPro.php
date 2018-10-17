@@ -21,8 +21,9 @@ function newtifryProPush(	$apikey,
 													$speak = -1, 
 													$noCache = false, 
 													$state = 0, 
-													$notify = -1) {
-	$data = getData($title, $source, $message, $priority, $url, $imageUrl, $speak, $noCache, $state, $notify);
+													$notify = -1,
+													$tag = NULL) {
+	$data = getData($title, $source, $message, $priority, $url, $imageUrl, $speak, $noCache, $state, $notify, $tag);
 
 	$fields = array(  'registration_ids'  => $deviceIds,
 										'data'              => $data);
@@ -71,8 +72,9 @@ function newtifryProPushToTopic(	$apikey,
 													$speak = -1, 
 													$noCache = false, 
 													$state = 0, 
-													$notify = -1) {
-	$data = getData($title, $source, $message, $priority, $url, $imageUrl, $speak, $noCache, $state, $notify);
+													$notify = -1,
+													$tag = NULL) {
+	$data = getData($title, $source, $message, $priority, $url, $imageUrl, $speak, $noCache, $state, $notify, $tag);
 
 	$fields = array(  'to'  => "/topics/" . $topic,
 										'data'              => $data);
@@ -140,7 +142,8 @@ function getData( $title,
 									$speak, 
 									$noCache, 
 									$state, 
-									$notify) {
+									$notify,
+									$tag) {
 	$data = array ( "type" => "ntp_message",
 									"timestamp" => iso8601(),
 									"priority" => $priority, 
@@ -179,6 +182,9 @@ function getData( $title,
 	if ($notify == 0 || $notify == 1) {
 		$data["notify"] = $notify;
 	}      
+	if ($tag) {
+		$data["tag"] = base64_encode($tag);
+	}
 	
 	return $data;
 }
