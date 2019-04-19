@@ -1,7 +1,7 @@
 <?php
 include ("NewtifryPro.php");
 
-$apikey = "YourGoogleAPIKEY";
+$apikey = ALERTES VOCALES;
 
 $deviceIds = array();
 // Add your GCM IDs below
