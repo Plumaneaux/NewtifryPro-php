@@ -1,11 +1,12 @@
 <?php
 include ("NewtifryPro.php");
 
-$apikey = "YourGoogleAPIKEY";
+$apikey =Alerte Vocale;
 
 $deviceIds = array();
 // Add your GCM IDs below
-$deviceIds[] = "MyFirstGCMDeviceID";
+$deviceIds[] = ehbGeWyaepM:APA91bGg83DV9jXf5bhH3wnvEnJECBPkNumuu2RhwMxODnkqpj0MCkAQBcZAC9k4CON8fhZVfw1Zjixy6PorcE3qYNJ4PzpWytCVgBr3hQMpnd0kE9Tfd0q7pzi6DsVEBFAwiFzSgiRh
+  ;
 //$deviceIds[] = "MySecondGCMDeviceIDIfAny";
 
 // samples
